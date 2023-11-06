@@ -1,0 +1,40 @@
+---
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "www") })
+---
+
+```{r setup, echo=FALSE}
+# Setup
+
+knitr::opts_chunk$set(
+  ########## set global options ############
+  echo = FALSE, # don't show code
+  collapse = TRUE, # keep code from blocks together (if shown)
+  message = FALSE, # show messages
+  warning = TRUE, # show warnings
+  error = TRUE, # show error messages
+  comment = "" # don't show ## with printed output
+)
+
+# R's default rounding is to show 7 digits. This rounds results to 3 digits.
+options(digits = 3)
+```
+
+```{r load-data, include = FALSE}
+source("load.R")
+```
+
+Relapse is a binary indicator of whether or not a patient has relapsed into their addiction. A value of 1 indicates that the patient has relapsed, while a value of 0 indicates that the patient has not relapsed. Relapse is a major concern for patients who are recovering from addiction, and it can be difficult to predict who is at risk for relapse. 
+
+In the study, we are using relapse as our outcome variable. This means we are interested in determining whether or not our treatment intervention is effective in preventing relapse. In this study, 1100 participants did not relapse, while 1392 participants did relapse. This means that the overall relapse rate was 56%.
+
+```{r}
+library(gtsummary)
+analysis$relapse %>% 
+  tibble() %>% 
+  tbl_summary() %>% 
+  remove_row_type() %>% 
+  modify_caption("**Relapse Rate**")
+  
+```

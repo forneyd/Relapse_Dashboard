@@ -1,0 +1,17 @@
+Logistic regression is an algorithm used for binary classification tasks in machine learning. It is primarily used when the target variable or the output variable is categorical and has two possible outcomes, typically represented as 0 and 1. The model's (recall (0.360), precision (0.547), F-measure (0.434), accuracy (0.586), kappa (0.129), sensitivity (0.360), specificity (0.764), and ROC AUC (0.584)) overall prediction performance needs further refinement. The confusion matrix also demonstrates the modest performance of the model in predicting positive examples. The following metrics were analyzed and those with significance are described:
+
+
+Beta logistic:
+Heroin has a coefficient of 1.17, indicating that its presence has a positive effect on the log-odds of the outcome. The p-value of 0.009 indicates that the coefficient is statistically significant.
+
+Relationship Status has a coefficient of 0.62. The p-value of 0.017 indicates that the coefficient is statistically significant.
+
+project_X30" has a coefficient of 1.73. The p-value of 0.019 indicates that the coefficient is statistically significant.
+
+Anxiety/Panic Attacks has a coefficient of 1.30. The p-value of 0.023 indicates that the coefficient is statistically significant.
+
+Max has a coefficient of 1.16 and a p-value of 0.047 which indicates that the coefficient is statistically significant.
+
+Education has a coefficient of 0.70 and has a p-value of 0.053 indicates that the coefficient is marginally statistically significant.
+
+Employment has a coefficient of 1.37 and p-value of 0.073 which indicates that the coefficient is marginally statistically significant.

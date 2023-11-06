@@ -1,0 +1,39 @@
+---
+title: "summary"
+output: html_document
+date: "2023-11-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+Based on the provided metrics (accuracy and roc_auc), we can compare the performance of the models as follows:
+
+Accuracy:
+
+-   Random Forest has the highest accuracy score of 0.596, indicating that it achieved the highest percentage of correct predictions compared to the other models.
+
+-   KNN and CART have the same accuracy score of 0.591, tying for the second-highest accuracy.
+
+-   Lasso Logistic has an accuracy score of 0.587, and it is slightly lower than the previous models.
+
+-   Traditional Logistic has the lowest accuracy score of 0.586 among all the models.
+
+ROC_AUC (Receiver Operating Characteristic - Area Under the Curve):
+
+-   Random Forest has the highest roc auc score of 0.621, suggesting that it performed the best in terms of the overall quality of its predictions.
+
+-   CART follows closely with a roc auc score of 0.597.
+
+-   Traditional Logistic has a roc auc score of 0.584, indicating moderate performance.
+
+-   KNN has a lower roc auc score of 0.559, which is the second-lowest among the models.
+
+    Overall, based on the given metrics, Random Forest performs the best in terms of accuracy and ROC auc.

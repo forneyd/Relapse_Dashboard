@@ -1,0 +1,11 @@
+#Lasso Results
+
+Lasso (Least Absolute Shrinkage and Selection Operator) is a regression analysis method that performs both variable selection and regularization in order to enhance the prediction accuracy and interpretability of the resulting statistical model.
+
+Lasso regression is a type of linear regression that penalizes the size of the coefficients. This can help to prevent overfitting, which is a problem that can occur with linear regression models. Overfitting occurs when the model learns the training data too well and is unable to generalize to new data.
+
+The Lasso algorithm works by adding a penalty term to the traditional linear regression model. This penalty term is proportional to the sum of the absolute values of the coefficients. As the penalty term increases, the coefficients shrink towards zero. This can result in some coefficients being zero, which means that the corresponding features are not included in the model.
+
+The Lasso model has shown an accuracy of 0.587 and a ROC AUC of 0.582 in the training data. This means that the model correctly classified 58.7% of the data and had an area under the ROC curve of 0.582. I found it useful as a machine learning algorithm and this number satisfy my predictions.
+
+

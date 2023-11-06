@@ -1,0 +1,35 @@
+# Welcome to the CTN-0094 Data Analysis Dashboard!
+  
+This app provides comprehensive insights into the CTN-0094 clinical trials and our model efforts. We are Team Miami, and our team consists of Sultana Mubarika Rahman Chowdhury, Kazi Tanvir Hasan, Felicia Casanova, Derrick Forney, and Jayro Toledo.
+
+
+## Opioid Use Disorder (OUD)
+
+OUD is a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. It is a major public health problem in the United States, with an estimated 2.1 million people suffering from the disorder.
+
+
+## Our Project
+
+Our project aims to develop a machine learning model capable of predicting which individuals are more likely to overcome opioid addiction and which individuals may struggle with recovery. By leveraging the wealth of data from multiple clinical trials conducted within the National Drug Abuse Treatment Clinical Trials Network (CTN), we seek to identify key patient characteristics that influence treatment outcomes. This predictive model can help inform personalized treatment strategies and interventions for individuals with OUD.
+
+
+## Data Sources
+
+We have utilized data from three significant clinical trials conducted within the CTN as the foundation for our predictive model. The trials include:
+  
+  CTN-0027: This trial compared the effectiveness of methadone and buprenorphine for a 12-week treatment period in federally licensed methadone treatment programs. The study enrolled 1269 participants.
+
+CTN-0030: In this trial, patients who primarily used prescription opioids were recruited and treated with buprenorphine. The aim was to assess the efficacy of buprenorphine in managing opioid addiction. The study included 653 participants.
+
+CTN-0051: This trial compared the effectiveness of buprenorphine and
+extended-release naltrexone (XR-NTX) for individuals recruited from inpatient treatment facilities. The study enrolled 570 participants.
+
+## Data Harmonization
+
+To facilitate effective comparison and analysis, we undertook a rigorous data harmonization process. This involved integrating data from multiple domains across the three clinical trials mentioned above. By harmonizing the data, we ensured compatibility and consistency, enabling comprehensive analysis of patient characteristics and treatment outcomes. This harmonized dataset forms the basis for training and evaluating our machine learning model.
+
+We are excited to share our findings with you and to collaborate with others in the field to improve the treatment of OUD.
+
+Thank you for visiting the CTN-0094 Data Analysis Dashboard!
+  
+  

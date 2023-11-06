@@ -1,0 +1,13 @@
+A CART model, also known as Classification and Regression Trees, is a machine learning algorithm used for both classification and regression tasks. It creates a decision tree where each internal node represents a feature or attribute, and each leaf node represents a class or predicted value. The model recursively partitions the data based on the selected features, aiming to minimize the impurity or variance within each partition.
+
+Here are some of the key findings from CART model performance,
+
+-   Accuracy: The accuracy metric indicates the overall correctness of the model's predictions is **0.591**.
+
+-   Sensitivity: Sensitivity measures the proportion of correctly predicted positive outcomes out of all actual positive instances which is **0.451** or **45%** approximately.
+
+-   Specificity: Specificity measures the proportion of correctly predicted negative instances out of all actual negative instances which is **0.701** or **70.1%** approximately.
+
+-   Area under the curve ROC: The ROC AUC measures the model's performance across all classification thresholds which is **0.597** in this model.
+
+Using the ROC AUC, Our cart model is able to correctly classify **59.7%** of the cases. In the context of a CART model, this means that the decision tree structure created by the model is able to correctly classify or predict the relapse for about **59.7%** of the instances.

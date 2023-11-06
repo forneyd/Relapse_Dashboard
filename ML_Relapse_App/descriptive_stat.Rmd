@@ -1,0 +1,231 @@
+---
+title: "Descriptive Statistics of possible predictors"
+author: "Team Miami"
+date: "`r Sys.Date()`"
+output:
+  bookdown::html_document2:
+    number_sections: false
+editor_options: 
+  chunk_output_type: console
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "www") })
+---
+
+
+```{r setup, echo=FALSE}
+# Setup
+
+knitr::opts_chunk$set(
+  ########## set global options ############
+  echo = FALSE, # don't show code
+  collapse = TRUE, # keep code from blocks together (if shown)
+  message = FALSE, # show messages
+  warning = FALSE, # show warnings
+  error = TRUE, # show error messages
+  comment = "" # don't show ## with printed output
+)
+
+# R's default rounding is to show 7 digits. This rounds results to 3 digits.
+options(digits = 3)
+```
+
+```{r load-data, include = FALSE}
+source("load.R")
+```
+
+
+
+# Demographic Characteristic 
+ 
+
+
+```{r include=FALSE}
+# Dataset Information
+
+skimr::skim(analysis_demographics)
+```
+
+
+## Descriptive table
+
+This section presents the descriptive statistics of the demographic information, including age, ethnicity, race, employment, usual living arrangements, education, relationship status, and sex. The analysis provides insights into the composition of the sample and lays the foundation for further investigation.
+
+Table 1 summarizes the demographic characteristics of our study population. The study included 3,560 participants and analyzed their demographic characteristics using descriptive statistics. The mean age of the participants was 36.2 years, with the majority of participants falling into the 27-30 age group. The majority of participants identified as Not Hispanic (84.8%), while 14.2% identified as Hispanic. The largest racial group was White (73.9%), followed by Black (10.3%) and Other (14.2%).
+
+In terms of employment, the sample included participants in various categories, with Full Time being the largest group (24.3%). The participants reported diverse living arrangements, with 43.1% reporting stable living situations. In terms of education, HS/GED was the largest educational group (19.4%). The majority of participants were never married (28.9%), while a significant portion of data was missing for relationship status (50.8%). The sample had a slightly higher proportion of male participants (66.0%) compared to females (33.8%).
+
+```{r}
+caption <- "Table 1: Descriptives statistics of demographic information in the study"
+table1(
+  ~ Age + Ethnicity + Race + Employment + `Usual Living Arrangements` + Education + `Relationship Status` + Sex |
+    project,
+  data = analysis_demographics,
+  caption = caption
+)
+```
+
+```{r}
+suppressPackageStartupMessages(library(GGally))
+
+GGally::ggpairs(
+  analysis_demographics,
+  progress = FALSE, # don't show progress bar
+  lower = list(combo = wrap("facethist", bins = 20)) # use 20 bins in histogram
+) +
+  ggtitle("Figure 1: Pairs Plot")
+```
+
+
+## Violin Plot for Continuous variable (Age)
+
+The average age of participants in the three trials was similar, with the exception of CTN-0027, which had a higher average age of 37. This was due to a bimodal age distribution in CTN-0027, with a younger group of participants and a second group of participants centered around age 50. The younger group of participants had a similar age distribution to the other two trials, but the second group of participants was unique to CTN-0027.
+
+Here is a graph of the age distribution of participants in the three trials:
+
+```{r age-plot, fig.height= 5, fig.width = 6}
+analysis_demographics %>%
+  # Wrangle
+  select(project, Age) %>%
+  filter(!is.null(project) & !is.na(Age)) %>%
+  mutate(
+    project = case_when(
+      project == "27" ~ "CTN-0027",
+      project == "30" ~ "CTN-0030",
+      project == "51" ~ "CTN-0051"
+    )
+  ) %>%
+  mutate(`CTN Trial Number` = factor(project)) %>%
+  # Plot
+  ggplot() +
+  aes(x = `CTN Trial Number`, y = Age) +
+  geom_violin(draw_quantiles = c(0.25, 0.5, 0.75)) +
+  stat_summary(fun = mean, geom = "point", shape = 4, size = 4, color = "red") +
+  theme_few() +
+  ggtitle("Figure 2: Violin plot: Age") +
+  theme(axis.title.x = element_blank())
+```
+
+The bimodal age distribution in CTN-0027 may be due to a number of factors, such as the recruitment methods used for the trial or the specific population that was targeted. It is important to note that the age distribution of participants can have a significant impact on the results of a trial, so it is important to be aware of any potential biases.
+
+
+## Age group 
+
+The Table 2 shows that the majority of participants in the study were between the ages of 25 and 33 (30.6%). The second largest age group was 34 to 43 (22.3%), followed by 18 to 24 (14.2%). The smallest age groups were 44 to 54 (22.0%) and 55+ (5.1%). There were also a small number of participants with missing age information (5.8%).
+
+The age distribution of the participants in the study is likely due to the fact that the study was conducted on a college campus. The majority of college students are between the ages of 18 and 24, so it is not surprising that this age group was the most represented in the study. The second largest age group, 34 to 43, is likely due to the fact that many college students are in their early 30s when they graduate. The smallest age groups, 44 to 54 and 55+, are likely due to the fact that there are fewer college students in these age groups.
+
+The age distribution of the participants in the study is important to consider when interpreting the results of the study. For example, if the study was looking at the effects of a new drug on memory, the results might be different if the study was conducted on a group of older adults instead of college students.
+
+```{r age-group}
+analysis_demographics <-
+  analysis_demographics %>%
+  mutate(
+    `Age Group` =
+      case_when(
+        Age >= 18 & Age <= 24 ~ "18-24",
+        Age >= 25 & Age <= 33 ~ "25-33",
+        Age >= 34 & Age <= 43 ~ "34-43",
+        Age >= 44 & Age <= 54 ~ "44-54",
+        Age >= 55 ~ "55+",
+      )
+  )
+
+analysis_demographics %>%
+  table1(
+    ~ `Age Group` | project,
+    data = .,
+    caption = "Table 2:Age groups"
+  )
+```
+
+
+
+# Drugs Information 
+
+We used the table all_drugs from the harmonized data set CTN-0094. As a team we discussed and selected several drugs variables that have relevance to our knowledge  and are highly addictive.  Due to the nature of these studies only opioids had pharmacological treatment, our predictor are in the table 1. Paradoxically the pharmacology treatment for an opioid addiction is another opioid like: Buprenorphine or Methadone. We have this in mind to properly allocated or tune in the data.  
+
+According to the information provided in the CTN-094 R packages: The all_drugs dataset is an agglomeration of all self-reported drugs, drugs found in urine drug screening and alcohol screening in ctn_0027, ctn_0030, and ctn_0051. This data is the result of extensive preprocessing of free text to harmonize drug names, but drugs were not collapsed into groups. For example, the many descriptions, abbreviations, and spellings of variants of suboxone (e.g., “street suboxone”, “bup/nx”, “buxnx”, “bupnx”, “pbupnx”, “bupxx”) were harmonized into a single “suboxone” group but suboxone was not collapsed with other buprenorphine formulations.
+
+Table 3 represent the number of substance use in 28 days, this data was self reported during follow up visits and collected with surveys. We observed 3560 participants, where across the 3 clinical trials Heroin reported a mean of 21.6 days of use. Followed by Methadone that reported 8.64 days of use and Alcohol mean is 5.27 days of use.
+
+```{r}
+# Table
+
+drugs_table <- analysis_df %>%
+  table1(~ `who` + `Methadone` + `Heroin` + `Buprenorphine` + `Alcohol` + `Benzodiazepine` + `Sedative-Hypnotic` + `pain` | project, data = ., caption = "Table 3: Substance predictors", footnote = "Self-reported number of days used", topclass = "Rtable1-zebra")
+drugs_table
+```
+
+
+
+# Psychological Characteristic 
+
+In this section, we present the descriptive statistics of psychological diagnoses, including depression, anxiety/panic attacks, and bipolar disorder.
+
+In our study population, 940 participants had a history of depression, 1069 participants had a history of anxiety or panic attacks, and 332 participants had a history of bipolar disorder.
+
+```{r, psych-data}
+# rndr <- function(x, ...) {
+#  y <- render.default(x, ...)
+#  if (is.logical(x)) y[2] else y
+# }
+```
+
+```{r, psych-table}
+psych_table <- analysis_df %>%
+  table1(
+    ~ `Depression` + `Anxiety/Panic Attacks` + `Bipolar Disorder` |
+      project,
+    data = .,
+    caption = "Table 4:History of Psychological Diagnosis"
+  )
+psych_table
+```
+
+# Descriptives on Quality of Life [Homelessness]
+In this section, we present the descriptive statistics of homelessness.In our study population, 171 participants were homeless.
+```{r, homelessness}
+qol_table <- analysis_df %>%
+  select(Homeless, project)
+table1(~ Homeless | project, data = qol_table, caption = "Table 5: Number of Participants Experiencing Homelessness", render = rndr)
+```
+
+
+
+# Withdrawal Symptoms Prior to Treatment
+In this section, we present the descriptive statistics of severity of withdraw symptoms and number of days experiencing withdraw symptoms prior to treatment.
+
+In our study population with 45 days of the study, 34 participants (1.0%) experienced no withdrawal symptoms, 189 participants (5.3%) experienced severe withdrawal symptoms, 448 participants (12.6%) experienced moderate withdrawal symptoms, 591 participants (16.6%) experienced mild withdrawal symptoms. Our study also found within 45 days of study the average number of days experiencing withdrawls symptoms was 4.79 days.
+
+```{r, withdrawl}
+withdrawal_table <- analysis_df %>%
+  select(`Withdrawal Symptom Severity`, project)
+table1(~ `Withdrawal Symptom Severity` | project, data = withdrawal_table, caption = "Table 6: Severity of withdrawl symptoms and number of days experiencing withdrawl symptoms", render = rndr)
+```
+
+
+
+# Risk Behaviour Characteristic 
+
+```{r, rbs-data}
+rndr <- function(x, ...) {
+  y <- render.default(x, ...)
+  if (is.logical(x)) y[2] else y
+}
+```
+
+
+The CTN study also includes two risk behavior survey variables from a sample of (N=3560). The rbs variable asked participants to report if they used drugs in the last 30 days and if so, how many days they used drugs in the last 30 days (rbs). The descriptive statistics for the average days participants who reported using drugs in the last 30 days was 9 days (5%). The reported average days of drug use within the last 30 days for each drugs include cocaine, heroine, speedball, opioid, and speed. The average number of days per drug type in the last 30 days varied. An average of around two days for cocaine (3.47%), 20 days for heroin (13%), 4 days for speedball (5.4%), a day and a half for opioid (2.7%), and two days for speed (2%).
+
+
+```{r, rbs-table}
+rbs_table <- rbs_measures %>%
+  select(
+    "cocaine_inject_days",
+    "heroin_inject_days", "speedball_inject_days", "opioid_inject_days",
+    "speed_inject_days", "average_rbs"
+  )
+
+
+table1(~., data = rbs_table, caption = "Table 7:Average Drug Use by Drug Type in the Last 30 Days [rbs_iv]", render = rndr)
+```

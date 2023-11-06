@@ -1,0 +1,25 @@
+---
+title: "rf_results"
+output: ''
+date: "2023-11-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A Random Forest is a machine-learning algorithm that combines multiple decision trees to make predictions. For each decision tree, a random subset of the data is used for training, and the predictions from all trees are combined to produce the final prediction. Several types of tasks can be carried out using it, including classification and regression.
+
+Various metrics were analyzed. Here are some of our key findings about random forest model performance:
+
+-   Accuracy: The accuracy metric indicates the overall correctness of the model's predictions. **0.4**
+
+-   Precision: Precision represents the proportion of correctly predicted positive instances out of all positive instances predicted. **0.558**
+
+-   Sensitivity: Recall measures the proportion of correctly predicted positive outcomes out of all actual positive instances. **0.4**
+
+-   Specificity: Specificity measures the proportion of correctly predicted negative instances out of all actual negative instances. **0.75**
+
+-   ROC AUC: The ROC AUC measures the model's performance across all classification thresholds. **0.621**
+
+Using the ROC AUC, Our random forest model is able to correctly classify 62.1% of the cases, which is better than chance but not by a large margin.

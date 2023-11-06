@@ -1,0 +1,53 @@
+---
+title: "Predictors"
+author: "Team Miami"
+date: "`r Sys.Date()`"
+output:
+  bookdown::html_document2:
+    number_sections: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Predictors for Relapse Risk in People with Substance Use Disorders
+
+
+The features selected for the model are:
+
+- Who: Patient ID
+
+Continious:
+
+- Age, 
+- Days (Maximum number of days of IV drug use across all injected drug),
+- Max (Number of drug use events),
+- Amount (Indicator of total IV drug exposure for the most used IV drug),
+- Average_rbs (Average  number of days of IV drug Use by Individual)
+- Alcohol,
+- Benzodiazepine
+- Heroin,
+- Buprenorphine,
+- Methadone
+- Sedative-Hypnotic
+
+Categorical:
+
+- Employment (Full Time, Other, Part Time, Student, Unemployed), 
+- Education (HS/GED, Less than HS, More than HS),
+- Relationship Status (Married or Partnered, Never Married, Seperated/Divorced, Windowed), 
+- Sex (Male, Female),
+- Race (Black, Other Refused/missing, White),
+- Ethnicity (Hispanic, Not Hispanic),
+- Usual Living Arrangements (Stable, Not Stable),
+- Depression (Yes, No, Missing/Not Answered),
+- Anxiety/Panic Attacks (Yes, No, Missing/Not Answered),
+- Bipolar Disorder (Yes, No, Missing/Not Answered),
+- Shared (No (Did not share needles), Yes (Shared needsle in last 30 days)),
+- Pain (No Pain, Very mild to Moderate Pain, Severe Pain, Missing),
+- Homeless (Yes, No),
+- Withdrawal Symptom Severity (None, Mild, Mod, Sev)
+- project (CTN 0027, CTN 0030, CTN 0051)
+             
+                
+The data cleaning process involves loading and merging multiple datasets to create a comprehensive analysis dataset. The goal of this data cleaning process was to create a comprehensive analysis dataset named `analysis` with the relevant variables for further analysis. This dataset will be used to train a machine learning model to predict the risk of relapse in people with substance use disorders.

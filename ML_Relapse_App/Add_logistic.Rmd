@@ -1,0 +1,65 @@
+---
+title: "Add_logistic"
+output: html_document
+date: "2023-06-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load-packages}
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r load-data}
+source("load.R")
+source("preprocess.R")
+```
+
+
+```{r logistic-workflow}
+
+logistic_spec <- logistic_reg()
+
+
+logistic_workflow <-
+  workflow() %>% 
+ add_recipe(relapse_rec) %>% 
+  add_model(logistic_spec)
+
+```
+
+```{r fit-model}
+logistic_fit <- logistic_workflow %>% 
+  fit(data = analysis_train)
+```
+
+
+```{r}
+relapse_pred <- 
+  predict(logistic_fit, analysis_train, type = "prob") %>% 
+  bind_cols(analysis_train %>% select(relapse)) 
+
+relapse_pred %>% 
+  roc_curve(truth = relapse, .pred_0) %>% 
+  autoplot()
+
+relapse_pred %>% 
+  roc_auc(truth = relapse, .pred_0)
+```
+
+```{r save-stuff}
+if (!dir.exists(paste0(here::here(),"/data"))) {
+  dir.create(paste0(here::here(),"/data"))
+}
+logistic_betas <- logistic_fit |>
+  tidy(conf.int = TRUE, conf.level = 0.95, exponentiate = TRUE) |>
+  arrange(desc(abs(estimate))) |>
+  select(term, estimate, conf.low, conf.high, std.error, p.value) |>
+  mutate(across(estimate:std.error, ~round(.x, digits = 2))) |>
+  mutate(p.value = scales::pvalue(p.value)) %>% 
+  arrange(p.value)
+save(logistic_betas, file = "./data/logistic_betas.RData")
+```
