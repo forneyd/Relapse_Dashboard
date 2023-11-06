@@ -1,9 +1,9 @@
 
 # Load data
-#source("load.R")
+source("load.R")
 
 # Load Preprocess data (contains train and test datasets)
-#source("preprocess.R")
+source("preprocess.R")
 
 # Define the model and the engine
 glmnet_spec <- logistic_reg(penalty = tune(), mixture = 1) %>%

@@ -1,6 +1,6 @@
 # Welcome to the CTN-0094 Data Analysis Dashboard!
   
-This app provides comprehensive insights into the CTN-0094 clinical trials and our model efforts. We are Team Miami, and our team consists of Sultana Mubarika Rahman Chowdhury, Kazi Tanvir Hasan, Felicia Casanova, Derrick Forney, and Jayro Toledo.
+This app provides comprehensive insights into the CTN-0094 clinical trials and our model efforts.
 
 
 ## Opioid Use Disorder (OUD)

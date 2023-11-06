@@ -20,8 +20,8 @@ cv_folds <-
            v = 5,
            strata = relapse)
 # Load data
-#source("load.R")
-#source("preprocess.R")
+source("load.R")
+source("preprocess.R")
 
 ## Make a Recipe
 relapse_rec_rf <- relapse_rec
