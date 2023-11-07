@@ -26,8 +26,6 @@ c1 <- analysis %>%
 
 ######################### app  ######################
 
-# rmarkdown::render("teammiami_outline.Rmd")
-
 
 ui <- dashboardPage(
   dashboardHeader(
