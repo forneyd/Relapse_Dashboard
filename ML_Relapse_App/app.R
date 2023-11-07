@@ -31,8 +31,8 @@ c1 <- analysis %>%
 
 ui <- dashboardPage(
   dashboardHeader(
-    title = "BST692: Exploring CTN-0094 Data with R & Shiny Dashboard", titleWidth = 650, 
-    tags$li(class="dropdown",tags$a(href="https://github.com/hermes33ac/Team-Miami", icon("github"), "Source Code", target="_blank")
+    title = "Exploring CTN-0094 Data with R & Shiny Dashboard", titleWidth = 650, 
+    tags$li(class="dropdown",tags$a(href="https://github.com/forneyd/Relapse_Dashboard", icon("github"), "Source Code", target="_blank")
     )
   ), # dasboardHeader
   
