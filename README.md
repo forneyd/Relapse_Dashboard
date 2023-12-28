@@ -3,7 +3,7 @@ This dashboard was created in R Shiny to display Machine Learning algorithms dev
 
 
 # The Project
-This project aims to develop a machine learning model capable of predicting which individuals are more likely to overcome opioid addiction and which individuals may struggle with recovery. By leveraging the wealth of data from multiple clinical trials conducted within the National Drug Abuse Treatment Clinical Trials Network (CTN), we seek to identify key patient characteristics that influence treatment outcomes. This predictive model can help inform personalized treatment strategies and interventions for individuals with OUD.
+This project aims to develop a machine learning model capable of predicting which individuals are more likely to overcome opioid addiction and which individuals may struggle with recovery. By leveraging the wealth of data from multiple clinical trials conducted within the National Drug Abuse Treatment Clinical Trials Network (CTN), we seek to identify key patient characteristics that influence treatment outcomes. This predictive model can help inform personalized treatment strategies and interventions for individuals with Opioid Use Disorder.
 
 
 # Instructions
